@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>掷骰子</title>
+	<style>
+		body,html,section,ul,li{margin: 0;padding: 0;}
+		section{
+			width: 300px;
+			height: 300px;
+			margin: 100px auto 0;
+			perspective:2000px;
+			perspective-origin:600px -300px;
+		}
+		ul{
+			width: 300px;
+			height: 300px;
+			position: relative;
+			-ms-transform-style:preserve-3d;
+			-webkit-transform-style:preserve-3d;
+			-moz-transform-style:preserve-3d;
+			-o-transform-style:preserve-3d;
+			transform-style:preserve-3d;
+			-ms-transition:all 2.5s;
+			-webkit-transition:all 2.5s;
+			-o-transition:all 2.5s;
+			-moz-transition:all 2.5s;
+			transition:all 2.5s;
+		}
+		ul li{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			left: 0;top: 0;
+			list-style-type:none;
+			font-size:100px;
+			text-align: center;
+			line-height: 300px;
+			background-color:orange;
+			border: 1px solid #000;
+			box-sizing: border-box;
+		}
+		ul li:nth-child(1){
+			-ms-transform:translateZ(150px);
+			-webkit-transform:translateZ(150px);
+			-o-transform:translateZ(150px);
+			-moz-transform:translateZ(150px);
+			transform:translateZ(150px);
+		}
+		/*上*/
+		ul li:nth-child(2){
+			-ms-transform:rotateX(90deg) translateZ(150px);
+			-webkit-transform:rotateX(90deg) translateZ(150px);
+			-o-transform:rotateX(90deg) translateZ(150px);
+			-moz-transform:rotateX(90deg) translateZ(150px);
+			transform:rotateX(90deg) translateZ(150px);
+		}
+		ul li:nth-child(3){
+			-ms-transform:rotateY(90deg) translateZ(150px);
+			-webkit-transform:rotateY(90deg) translateZ(150px);
+			-o-transform:rotateY(90deg) translateZ(150px);
+			-moz-transform:rotateY(90deg) translateZ(150px);
+			transform:rotateY(90deg) translateZ(150px);
+		}
+		/*下*/
+		ul li:nth-child(4){
+			-ms-transform:rotateX(-90deg) translateZ(150px);
+			-webkit-transform:rotateX(-90deg) translateZ(150px);
+			-o-transform:rotateX(-90deg) translateZ(150px);
+			-moz-transform:rotateX(-90deg) translateZ(150px);
+			transform:rotateX(-90deg) translateZ(150px);
+		}
+		ul li:nth-child(5){
+			-ms-transform:rotateY(-90deg) translateZ(150px);
+			-webkit-transform:rotateY(-90deg) translateZ(150px);
+			-o-transform:rotateY(-90deg) translateZ(150px);
+			-moz-transform:rotateY(-90deg) translateZ(150px);
+			transform:rotateY(-90deg) translateZ(150px);
+		}
+		ul li:nth-child(6){
+			-ms-transform:rotateY(180deg) translateZ(150px);
+			-webkit-transform:rotateY(180deg) translateZ(150px);
+			-o-transform:rotateY(180deg) translateZ(150px);
+			-moz-transform:rotateY(180deg) translateZ(150px);
+			transform:rotateY(180deg) translateZ(150px);
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oUl=document.querySelector('ul');
+			var oBox=document.querySelector('section');
+			var aRun=[
+				[0,0],[-90,0],[0,-90],[90,0],[0,90],[0,180]
+			];
+			var count=0;
+			var on=true;
+			oBox.onclick=function(){
+				if(on){
+					on=!on;
+					count++;
+					var num=Math.floor(Math.random()*aRun.length);
+					oUl.style.transform="rotateX("+(count*360*3+aRun[num][0])+"deg) rotateY("+(count*360*3+aRun[num][1])+"deg)";
+					setTimeout(function(){
+						on=!on;
+					},2500);
+				}				
+			}
+		}
+	</script>
+</head>
+<body>
+	<section>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+	</section>
+</body>
+</html>
